@@ -26,7 +26,7 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: Manropen
+    - family: Manrope
       fonts:
         - asset: assets/fonts/Manrope-Bold.ttf
           weight: 700
