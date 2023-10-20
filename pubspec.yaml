@@ -1,5 +1,5 @@
 name: movie_evertec
-description: A new Flutter project.
+description: Movie app for Evertec technical test.
 
 publish_to: 'none'
 
@@ -19,6 +19,16 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  flutter_gen_runner: ^5.3.2
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Manropen
+      fonts:
+        - asset: assets/fonts/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Manrope-Light.ttf
+          weight: 300
