@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_evertec/gen/fonts.gen.dart';
 import 'package:movie_evertec/gen/l10n.dart';
 
 import 'data/providers/providers.dart';
@@ -14,6 +15,10 @@ class MovieEvertecApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Movie Evertec App',
+      theme: ThemeData(
+        fontFamily: FontFamily.manrope,
+        useMaterial3: true,
+      ),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -48,6 +53,9 @@ class HomePage extends ConsumerWidget {
       body: Center(
         child: Text(
           S.of(context).helloWorld,
+          style: const TextStyle(
+            fontSize: 16,
+          ),
         ),
       ),
     );
