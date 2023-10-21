@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_evertec/gen/fonts.gen.dart';
 import 'package:movie_evertec/gen/l10n.dart';
 
+import 'core/router/router.dart';
 import 'data/providers/providers.dart';
 
 class MovieEvertecApp extends ConsumerWidget {
@@ -11,13 +12,17 @@ class MovieEvertecApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final appRouter = ref.watch(appRouterProvider);
     final locale = ref.watch(localeProvider);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Movie Evertec App',
       theme: ThemeData(
         fontFamily: FontFamily.manrope,
         useMaterial3: true,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
       ),
       localizationsDelegates: const [
         S.delegate,
@@ -27,37 +32,7 @@ class MovieEvertecApp extends ConsumerWidget {
       ],
       locale: locale,
       supportedLocales: S.delegate.supportedLocales,
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends ConsumerWidget {
-  const HomePage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(localeProvider);
-
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(localeProvider.notifier).changeLocale(
-                locale.languageCode == 'es' ? const Locale('en') : const Locale('es'),
-              );
-        },
-        child: const Icon(Icons.language),
-      ),
-      body: Center(
-        child: Text(
-          S.of(context).helloWorld,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-      ),
+      routerConfig: appRouter,
     );
   }
 }
