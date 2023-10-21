@@ -12,7 +12,17 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
+
+  # Packages
+  flutter_riverpod: ^2.4.4
+
+  # Utils
+  intl: ^0.18.1
+  intl_utils: ^2.8.5
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +34,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   fonts:
     - family: Manrope
@@ -32,3 +43,13 @@ flutter:
           weight: 700
         - asset: assets/fonts/Manrope-Light.ttf
           weight: 300
+
+flutter_intl:
+  enabled: true
+  class_name: S
+  main_locale: es
+  arb_dir: lib/l10n
+  output_dir: lib/gen
+
+flutter_gen:
+  output: lib/gen
