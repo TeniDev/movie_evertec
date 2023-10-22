@@ -62,12 +62,15 @@ class MoviesPage extends ConsumerWidget {
       body: Center(
         child: InkWell(
           onTap: () async {
-            final response = await ref.read(movieProvider).getUpcomingMovies();
+            final response = await ref.read(movieRepositoryProvider).getUpcomingMovies(
+                  language: 'en',
+                  page: '1',
+                );
+
             response.fold(
               (l) => print(l.toString()),
               (r) => print(r),
             );
-            //ref.read(appRouterProvider).push(RoutesNames.movieDetails);
           },
           child: const Text('Movies Page'),
         ),

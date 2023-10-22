@@ -5,7 +5,7 @@ import '../../core/utils/utils.dart';
 import '../base/base.dart';
 import '../resources/resources.dart';
 
-final movieProvider = Provider<MovieRepository>((ref) {
+final movieRepositoryProvider = Provider<MovieRepository>((ref) {
   return _MovieRepositoryImpl(
     movieResource: ref.watch(movieResourceProvider),
   );
@@ -19,7 +19,13 @@ class _MovieRepositoryImpl implements MovieRepository {
   final MovieResource _movieResource;
 
   @override
-  Future<Either<ApiException, List<dynamic>>> getUpcomingMovies() async {
-    return _movieResource.getUpcomingMovies();
+  Future<Either<ApiException, List<dynamic>>> getUpcomingMovies({
+    String? language,
+    String? page,
+  }) async {
+    return _movieResource.getUpcomingMovies(
+      language: language,
+      page: page,
+    );
   }
 }

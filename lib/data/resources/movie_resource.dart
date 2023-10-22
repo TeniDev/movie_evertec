@@ -36,6 +36,7 @@ class _MovieTmdbResource implements MovieResource {
         'include_adult': 'false',
         'include_video': 'false',
         'sort_by': 'popularity.desc',
+        'with_release_type': '2|3',
         'primary_release_date.gte': DateTime.now().date,
       },
       headers: {
@@ -45,6 +46,7 @@ class _MovieTmdbResource implements MovieResource {
     );
 
     if (response.statusCode == 200) {
+      print(response.body);
       return const Right(
         [],
       );
