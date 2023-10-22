@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../core/router/router.dart';
+import '../../data/providers/providers.dart';
 import '../../widgets/widgets.dart';
 
 class MoviesPage extends ConsumerWidget {
@@ -60,8 +61,13 @@ class MoviesPage extends ConsumerWidget {
       ),
       body: Center(
         child: InkWell(
-          onTap: () {
-            ref.read(appRouterProvider).push(RoutesNames.movieDetails);
+          onTap: () async {
+            final response = await ref.read(movieProvider).getUpcomingMovies();
+            response.fold(
+              (l) => print(l.toString()),
+              (r) => print(r),
+            );
+            //ref.read(appRouterProvider).push(RoutesNames.movieDetails);
           },
           child: const Text('Movies Page'),
         ),

@@ -23,6 +23,8 @@ dependencies:
   # Packages
   flutter_riverpod: ^2.4.4
   go_router: ^12.0.0
+  http: ^1.1.0
+  either_dart: ^1.0.0
 
   # Utils
   intl: ^0.18.1
