@@ -8,7 +8,7 @@ clean:
 
 gen:
 	@echo "╠ Running generator..."
-	flutter packages pub run build_runner build --delete-conflicting-outputs
+	flutter pub run build_runner build --delete-conflicting-outputs
 
 gen_l10n:
 	@echo "╠ Generating translations..."
