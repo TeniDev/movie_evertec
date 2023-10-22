@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_evertec/gen/fonts.gen.dart';
 import 'package:movie_evertec/gen/l10n.dart';
 
+import 'core/constants/constants.dart';
 import 'core/router/router.dart';
 import 'data/providers/providers.dart';
 
@@ -16,7 +17,7 @@ class MovieEvertecApp extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
 
     return MaterialApp.router(
-      title: 'Movie Evertec App',
+      title: AppConstants.appName,
       theme: ThemeData(
         fontFamily: FontFamily.manrope,
         useMaterial3: true,
