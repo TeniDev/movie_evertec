@@ -15,11 +15,8 @@ class MoviesMobile extends ConsumerWidget {
     final state = ref.watch(moviesEventProvider);
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        surfaceTintColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(
             left: 16,
