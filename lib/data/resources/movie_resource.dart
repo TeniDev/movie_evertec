@@ -4,7 +4,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/utils/utils.dart';
-import '../base/base.dart';
+import '../repositories/repositories.dart';
 import '../helpers/helpers.dart';
 import '../providers/api_provider.dart';
 
