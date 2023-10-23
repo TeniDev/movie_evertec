@@ -12,7 +12,9 @@ class ApiHelper {
     Map<String, String>? queryParameters,
     Map<String, String>? headers,
   }) async {
-    final uri = Uri.parse('$_base/$path').replace(queryParameters: queryParameters);
+    final uri = Uri.parse('$_base/$path').replace(
+      queryParameters: queryParameters,
+    );
 
     final response = await http.get(
       uri,

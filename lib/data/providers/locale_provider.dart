@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_evertec/gen/l10n.dart';
 
-final localeProvider = NotifierProvider<_LocaleProvider, Locale>(() => _LocaleProvider());
+final localeProvider = NotifierProvider<_LocaleProvider, Locale>(
+  () => _LocaleProvider(),
+);
 
 class _LocaleProvider extends Notifier<Locale> {
   @override

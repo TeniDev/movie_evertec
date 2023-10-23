@@ -4,6 +4,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/utils/utils.dart';
+import '../models/models.dart';
 import '../repositories/repositories.dart';
 import '../helpers/helpers.dart';
 import '../providers/api_provider.dart';
@@ -24,7 +25,7 @@ class _MovieTmdbResource implements MovieResource {
   final ApiHelper _apiHelper;
 
   @override
-  Future<Either<ApiException, List<dynamic>>> getUpcomingMovies({
+  Future<Either<ApiException, List<MovieModel>>> getUpcomingMovies({
     String? language,
     String? page,
   }) async {
@@ -46,10 +47,17 @@ class _MovieTmdbResource implements MovieResource {
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
-      return const Right(
-        [],
-      );
+      final moviesJson = jsonDecode(response.body)['results'] as List;
+
+      List<MovieModel> movies = [];
+
+      for (final element in moviesJson) {
+        movies.add(MovieModel.fromJson(
+          element as Map<String, dynamic>,
+        ));
+      }
+
+      return Right(movies);
     } else {
       return Left(
         ApiException(

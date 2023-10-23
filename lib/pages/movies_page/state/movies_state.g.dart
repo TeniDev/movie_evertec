@@ -8,7 +8,9 @@ part of 'movies_state.dart';
 
 _$MoviesStateImpl _$$MoviesStateImplFromJson(Map<String, dynamic> json) =>
     _$MoviesStateImpl(
-      movies: json['movies'] as List<dynamic>,
+      movies: (json['movies'] as List<dynamic>?)
+          ?.map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$MoviesStateImplToJson(_$MoviesStateImpl instance) =>

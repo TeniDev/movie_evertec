@@ -20,7 +20,7 @@ MoviesState _$MoviesStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MoviesState {
-  List<dynamic> get movies => throw _privateConstructorUsedError;
+  List<MovieModel>? get movies => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $MoviesStateCopyWith<$Res> {
           MoviesState value, $Res Function(MoviesState) then) =
       _$MoviesStateCopyWithImpl<$Res, MoviesState>;
   @useResult
-  $Res call({List<dynamic> movies});
+  $Res call({List<MovieModel>? movies});
 }
 
 /// @nodoc
@@ -50,13 +50,13 @@ class _$MoviesStateCopyWithImpl<$Res, $Val extends MoviesState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? movies = null,
+    Object? movies = freezed,
   }) {
     return _then(_value.copyWith(
-      movies: null == movies
+      movies: freezed == movies
           ? _value.movies
           : movies // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<MovieModel>?,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$MoviesStateImplCopyWith<$Res>
       __$$MoviesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<dynamic> movies});
+  $Res call({List<MovieModel>? movies});
 }
 
 /// @nodoc
@@ -83,13 +83,13 @@ class __$$MoviesStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? movies = null,
+    Object? movies = freezed,
   }) {
     return _then(_$MoviesStateImpl(
-      movies: null == movies
+      movies: freezed == movies
           ? _value._movies
           : movies // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<MovieModel>?,
     ));
   }
 }
@@ -97,18 +97,20 @@ class __$$MoviesStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MoviesStateImpl implements _MoviesState {
-  const _$MoviesStateImpl({required final List<dynamic> movies})
+  const _$MoviesStateImpl({required final List<MovieModel>? movies})
       : _movies = movies;
 
   factory _$MoviesStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$MoviesStateImplFromJson(json);
 
-  final List<dynamic> _movies;
+  final List<MovieModel>? _movies;
   @override
-  List<dynamic> get movies {
+  List<MovieModel>? get movies {
+    final value = _movies;
+    if (value == null) return null;
     if (_movies is EqualUnmodifiableListView) return _movies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movies);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -144,14 +146,14 @@ class _$MoviesStateImpl implements _MoviesState {
 }
 
 abstract class _MoviesState implements MoviesState {
-  const factory _MoviesState({required final List<dynamic> movies}) =
+  const factory _MoviesState({required final List<MovieModel>? movies}) =
       _$MoviesStateImpl;
 
   factory _MoviesState.fromJson(Map<String, dynamic> json) =
       _$MoviesStateImpl.fromJson;
 
   @override
-  List<dynamic> get movies;
+  List<MovieModel>? get movies;
   @override
   @JsonKey(ignore: true)
   _$$MoviesStateImplCopyWith<_$MoviesStateImpl> get copyWith =>

@@ -9,5 +9,6 @@ class HomeState with _$HomeState {
     required int currentIndexBottomBar,
   }) = _HomeState;
 
-  factory HomeState.fromJson(Map<String, dynamic> json) => _$HomeStateFromJson(json);
+  factory HomeState.fromJson(Map<String, dynamic> json) =>
+      _$HomeStateFromJson(json);
 }

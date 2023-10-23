@@ -19,6 +19,7 @@ class HomeMobile extends ConsumerWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         onTap: (value) {
           ref.read(homeEventProvider.notifier).changeCurrentIndexBottomBar(value);
         },

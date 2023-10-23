@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/router/router.dart';
 import '../state/home_state.dart';
 
-final homeEventProvider = StateNotifierProvider<HomeEventNotifier, HomeState>((ref) {
-  return HomeEventNotifier(ref);
-});
+final homeEventProvider = StateNotifierProvider<HomeEventNotifier, HomeState>(
+  (ref) {
+    return HomeEventNotifier(ref);
+  },
+);
 
 class HomeEventNotifier extends StateNotifier<HomeState> {
   HomeEventNotifier(this.ref)

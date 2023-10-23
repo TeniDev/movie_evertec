@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/utils/utils.dart';
+import '../models/models.dart';
 import '../repositories/repositories.dart';
 import '../resources/resources.dart';
 
@@ -19,7 +20,7 @@ class _MovieRepositoryImpl implements MovieRepository {
   final MovieResource _movieResource;
 
   @override
-  Future<Either<ApiException, List<dynamic>>> getUpcomingMovies({
+  Future<Either<ApiException, List<MovieModel>>> getUpcomingMovies({
     String? language,
     String? page,
   }) async {

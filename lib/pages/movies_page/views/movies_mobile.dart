@@ -3,16 +3,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../../core/router/router.dart';
-import '../../../data/providers/providers.dart';
 import '../../../widgets/widgets.dart';
+import '../providers/movies_providers.dart';
+import '../widgets/movies_widgets.dart';
 
 class MoviesMobile extends ConsumerWidget {
   const MoviesMobile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(moviesEventProvider);
+
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(
             left: 16,
@@ -59,22 +66,25 @@ class MoviesMobile extends ConsumerWidget {
           ),
         ],
       ),
-      body: Center(
-        child: InkWell(
-          onTap: () async {
-            final response = await ref.read(movieRepositoryProvider).getUpcomingMovies(
-                  language: 'en',
-                  page: '1',
-                );
+      body: state.movies == null
+          ? Builder(
+              builder: (context) {
+                ref.read(moviesEventProvider.notifier).getUpcomingMovies();
 
-            response.fold(
-              (l) => print(l.toString()),
-              (r) => print(r),
-            );
-          },
-          child: const Text('Movies Page'),
-        ),
-      ),
+                return const Center(
+                  child: LoadingAnimation(),
+                );
+              },
+            )
+          : state.movies!.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No hay peliculas',
+                  ),
+                )
+              : MoviesCard(
+                  movies: state.movies!,
+                ),
     );
   }
 }
