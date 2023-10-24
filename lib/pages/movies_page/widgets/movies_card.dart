@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'dart:ui' as ui;
 
+import '../../../core/utils/utils.dart';
 import '../../../data/models/models.dart';
 
 class MoviesCard extends StatefulWidget {
   const MoviesCard({
     super.key,
     required this.movies,
+    this.currentMovieIndex = 0.0,
+    required this.updateMovieIndex,
   });
 
   final List<MovieModel> movies;
+  final double currentMovieIndex;
+  final Function updateMovieIndex;
 
   @override
   State<MoviesCard> createState() => _MoviesCardState();
@@ -25,7 +31,15 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
 
   @override
   void initState() {
-    _movieCardPageController = PageController(viewportFraction: 0.77)..addListener(_movieCardPagePercentListener);
+    _movieCardPageController = PageController(
+      viewportFraction: .8,
+      initialPage: widget.currentMovieIndex.round(),
+    )..addListener(_movieCardPagePercentListener);
+
+    setState(() {
+      _movieCardPage = widget.currentMovieIndex;
+      _movieCardIndex = widget.currentMovieIndex.round();
+    });
     super.initState();
   }
 
@@ -41,6 +55,7 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
     setState(() {
       _movieCardPage = _movieCardPageController.page!;
       _movieCardIndex = _movieCardPageController.page!.round();
+      widget.updateMovieIndex(_movieCardPageController.page!);
     });
   }
 
@@ -68,33 +83,6 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                     return Column(
                       children: [
                         const SizedBox(height: 24),
-                        isCurrentPage
-                            ? FadeInRight(
-                                duration: const Duration(milliseconds: 300),
-                                from: 30,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.primary.withOpacity(.3),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(24),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    movie.title ?? '',
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : const SizedBox(),
-                        const SizedBox(height: 16),
                         SizedBox(
                           height: 400,
                           width: 300,
@@ -112,8 +100,8 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                                 curve: Curves.easeInOut,
                                 transform: Matrix4.identity()
                                   ..translate(
+                                    isCurrentPage ? 0.0 : -40.0,
                                     isCurrentPage ? 0.0 : -10.0,
-                                    isCurrentPage ? 0.0 : 20.0,
                                   ),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
@@ -123,11 +111,11 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                                     BoxShadow(
                                       blurRadius: 10,
                                       offset: const Offset(0, 5),
-                                      color: Colors.black.withOpacity(.2),
+                                      color: Colors.black.withOpacity(.1),
                                     ),
                                   ],
                                   image: DecorationImage(
-                                    image: NetworkImage('https://image.tmdb.org/t/p/w500${movie.posterPath}'),
+                                    image: NetworkImage('${Env.imageUrl}${movie.posterPath}'),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -137,29 +125,56 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                         ),
                         const SizedBox(height: 24),
                         isCurrentPage
-                            ? FadeInDown(
-                                duration: const Duration(milliseconds: 300),
-                                from: 30,
-                                child: RichText(
-                                  text: TextSpan(
-                                    text: 'Fecha de lanzamiento: ',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Theme.of(context).colorScheme.primary,
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text: movie.releaseDate,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300,
-                                          color: Theme.of(context).colorScheme.secondary,
-                                        ),
+                            ? Column(
+                                children: [
+                                  FadeInRight(
+                                    duration: const Duration(milliseconds: 500),
+                                    from: 30,
+                                    child: Text(
+                                      movie.title ?? '',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  const SizedBox(height: 12),
+                                  FadeInDown(
+                                    duration: const Duration(milliseconds: 300),
+                                    from: 40,
+                                    child: Divider(
+                                      indent: 30,
+                                      endIndent: 30,
+                                      color: Theme.of(context).colorScheme.secondary.withOpacity(.4),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  FadeInDown(
+                                    duration: const Duration(milliseconds: 300),
+                                    from: 30,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text: 'Lanzamiento: ',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Theme.of(context).colorScheme.primary,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: movie.releaseDate,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w300,
+                                              color: Theme.of(context).colorScheme.secondary,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             : const SizedBox(),
                       ],
@@ -167,23 +182,37 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                   },
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+              widget.movies[_movieCardIndex].overview != null && widget.movies[_movieCardIndex].overview!.isNotEmpty
+                  ? TextButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).colorScheme.secondary.withOpacity(.3),
+                        ),
+                      ),
+                      child: const Text(
+                        'Ver detalle',
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          PhosphorIcons.regular.placeholder,
+                          size: 14,
+                        ),
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Sin detalle',
+                        ),
+                      ],
                     ),
-                  ),
-                  backgroundColor: MaterialStateProperty.all(
-                    Theme.of(context).colorScheme.secondary.withOpacity(.3),
-                  ),
-                ),
-                child: const Text(
-                  'Ver detalle',
-                ),
-              ),
             ],
           ),
         );

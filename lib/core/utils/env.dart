@@ -10,4 +10,6 @@ abstract class Env {
   static String tmdbAccessKey = _Env.tmdbAccessKey;
   @EnviedField(varName: EnvConstants.urlTmdb)
   static const String urlTmdb = _Env.urlTmdb;
+  @EnviedField(varName: EnvConstants.imageUrl)
+  static const String imageUrl = _Env.imageUrl;
 }

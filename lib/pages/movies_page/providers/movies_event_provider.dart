@@ -14,6 +14,8 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
   MoviesEventNotifier(this.ref)
       : super(const MoviesState(
           movies: null,
+          currentMovieIndex: 0,
+          currentPageRequested: 1,
         ));
 
   final Ref ref;
@@ -36,6 +38,12 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
           movies: r,
         );
       },
+    );
+  }
+
+  void updateMovieIndex(double index) {
+    state = state.copyWith(
+      currentMovieIndex: index,
     );
   }
 }

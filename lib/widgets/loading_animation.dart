@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoadingAnimation extends StatefulWidget {
   const LoadingAnimation({
     Key? key,
-    this.mainColor = Colors.purple,
+    this.mainColor = Colors.blue,
   }) : super(key: key);
   final Color mainColor;
 
