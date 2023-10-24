@@ -103,28 +103,31 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                               -progress,
                             ),
                             scale: isScrolling && isFirstPage ? 1 - progress : scale,
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                              transform: Matrix4.identity()
-                                ..translate(
-                                  isCurrentPage ? 0.0 : -40.0,
-                                  isCurrentPage ? 0.0 : -10.0,
-                                ),
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(24),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 5),
-                                    color: Colors.black.withOpacity(.1),
+                            child: Hero(
+                              tag: movie.id!,
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                                transform: Matrix4.identity()
+                                  ..translate(
+                                    isCurrentPage ? 0.0 : -40.0,
+                                    isCurrentPage ? 0.0 : -10.0,
                                   ),
-                                ],
-                                image: DecorationImage(
-                                  image: NetworkImage('${Env.imageUrl}${movie.posterPath}'),
-                                  fit: BoxFit.cover,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(24),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 5),
+                                      color: Colors.black.withOpacity(.1),
+                                    ),
+                                  ],
+                                  image: DecorationImage(
+                                    image: NetworkImage('${Env.imageUrl}${movie.posterPath}'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
