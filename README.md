@@ -1,6 +1,6 @@
 # Movie Evertec - v1.0.0
 
-_Proyecto realizado en Flutter para prueba tecnica para evertec
+_Proyecto realizado en Flutter para prueba tecnica para evertec_
 
 ## Comenzando 🚀
 
@@ -48,8 +48,11 @@ _Finalmente puedes presionar F5 para correr el proyecto en modo debug_
 
 ## Ejecutando las pruebas ⚙️
 
-_(Proximamente) Actualmente el proyecto no cuenta con Testing_
+_Para ejecutar las pruebas de este proyecto ejecute el siguiente comando_
 
+```
+  make gen_test
+```
 
 ## Construido con 🛠️
 
