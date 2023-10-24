@@ -14,6 +14,14 @@ gen_l10n:
 	@echo "╠ Generating translations..."
 	flutter pub run intl_utils:generate
 
+gen_icon:
+	@echo "╠ Generating icons..."
+	flutter pub run flutter_launcher_icons
+
+gen_splash:
+	@echo "╠ Generating splash..."
+	dart run flutter_native_splash:create
+
 fix:
 	@echo "╠ Applying fix..."
 	dart fix

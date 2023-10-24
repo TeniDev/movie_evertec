@@ -44,6 +44,8 @@ dev_dependencies:
   envied_generator: ^0.3.0+3
   freezed: ^2.4.5
   json_serializable: ^6.7.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.1
 
 flutter:
   uses-material-design: true
@@ -66,3 +68,21 @@ flutter_intl:
 
 flutter_gen:
   output: lib/gen
+
+flutter_launcher_icons:
+  android: 'launcher_icon'
+  ios: true
+  image_path: 'assets/images/app_icon.jpg'
+  adaptive_icon_background: 'assets/images/app_icon.jpg'
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: '#9FC3E7'
+  image: assets/images/app_icon.jpg
+  color_dark: '#9FC3E7'
+  image_dark: assets/images/app_icon.jpg
+  android_12:
+    image: assets/images/app_icon.jpg
+    icon_background_color: '#9FC3E7'
+    image_dark: assets/images/app_icon.jpg
+    icon_background_color_dark: '#9FC3E7'
