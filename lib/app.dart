@@ -1,3 +1,4 @@
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,8 @@ class MovieEvertecApp extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
     final isDarkMode = ref.watch(isDarkModeProvider);
 
+    _initApp(ref);
+
     return MaterialApp.router(
       title: AppConstants.appName,
       theme: AppTheme(isDarkmode: isDarkMode).getTheme(),
@@ -29,6 +32,17 @@ class MovieEvertecApp extends ConsumerWidget {
       locale: locale,
       supportedLocales: S.delegate.supportedLocales,
       routerConfig: appRouter,
+    );
+  }
+
+  void _initApp(WidgetRef ref) {
+    final locale = ref.watch(localeProvider);
+
+    final response = ref.read(movieRepositoryProvider).getMoviesGenres(language: locale.languageCode);
+
+    response.fold(
+      (l) => null,
+      (r) => ref.read(genreProvider.notifier).update((_) => r),
     );
   }
 }

@@ -20,7 +20,9 @@ class HomeMobile extends ConsumerWidget {
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
-          ref.read(homeEventProvider.notifier).changeCurrentIndexBottomBar(value);
+          ref
+              .read(homeEventProvider.notifier)
+              .changeCurrentIndexBottomBar(value);
         },
         elevation: 0.0,
         iconSize: 32,

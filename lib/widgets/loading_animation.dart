@@ -11,7 +11,8 @@ class LoadingAnimation extends StatefulWidget {
   State<LoadingAnimation> createState() => _LoadingAnimationState();
 }
 
-class _LoadingAnimationState extends State<LoadingAnimation> with SingleTickerProviderStateMixin {
+class _LoadingAnimationState extends State<LoadingAnimation>
+    with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _firstSizeChange;
   Animation<double>? _firstOpacityChange;
@@ -96,7 +97,8 @@ class _LoadingAnimationState extends State<LoadingAnimation> with SingleTickerPr
           weight: 45.0,
         ),
         TweenSequenceItem<double>(
-          tween: Tween(begin: size * factor, end: size * factor).chain(CurveTween(
+          tween:
+              Tween(begin: size * factor, end: size * factor).chain(CurveTween(
             curve: Curves.linear,
           )),
           weight: 10.0,

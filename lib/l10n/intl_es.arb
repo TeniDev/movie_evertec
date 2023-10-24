@@ -1,4 +1,12 @@
 {
     "@@locale": "es",
-    "comingSoon": "Proximamente"
+    "comingSoon": "Proximamente",
+    "filters": "Filtros",
+    "noMoviesFound": "No se encontraron películas.",
+    "releaseDate": "Fecha de lanzamiento: ",
+    "seeDetail": "Ver detalle",
+    "noDetail": "No hay detalle",
+    "settings": "Configuración",
+    "language": "Idioma",
+    "darkMode": "Modo oscuro"
 }

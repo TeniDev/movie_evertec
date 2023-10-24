@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'dart:ui' as ui;
 
 import '../../../core/utils/utils.dart';
 import '../../../data/models/models.dart';
+import '../../../data/providers/providers.dart';
+import '../../../gen/l10n.dart';
 
 class MoviesCard extends StatefulWidget {
   const MoviesCard({
@@ -93,31 +96,28 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                               -progress,
                             ),
                             scale: isScrolling && isFirstPage ? 1 - progress : scale,
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                                transform: Matrix4.identity()
-                                  ..translate(
-                                    isCurrentPage ? 0.0 : -40.0,
-                                    isCurrentPage ? 0.0 : -10.0,
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                              transform: Matrix4.identity()
+                                ..translate(
+                                  isCurrentPage ? 0.0 : -40.0,
+                                  isCurrentPage ? 0.0 : -10.0,
+                                ),
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(24),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 5),
+                                    color: Colors.black.withOpacity(.1),
                                   ),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(24),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 5),
-                                      color: Colors.black.withOpacity(.1),
-                                    ),
-                                  ],
-                                  image: DecorationImage(
-                                    image: NetworkImage('${Env.imageUrl}${movie.posterPath}'),
-                                    fit: BoxFit.cover,
-                                  ),
+                                ],
+                                image: DecorationImage(
+                                  image: NetworkImage('${Env.imageUrl}${movie.posterPath}'),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -140,6 +140,19 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                                     ),
                                   ),
                                   const SizedBox(height: 12),
+                                  Consumer(
+                                    builder: (_, ref, __) {
+                                      final genreList = ref.watch(genreProvider);
+                                      final movieGenres = movie.genreIds
+                                          ?.map((e) => genreList?.firstWhere((element) => element.id == e).name)
+                                          .toList();
+
+                                      return Text(
+                                        '$movieGenres'.replaceAll('[', '').replaceAll(']', ''),
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(height: 12),
                                   FadeInDown(
                                     duration: const Duration(milliseconds: 300),
                                     from: 40,
@@ -155,7 +168,7 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                                     from: 30,
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Lanzamiento: ',
+                                        text: S.of(context).releaseDate,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,
@@ -196,8 +209,8 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                           Theme.of(context).colorScheme.secondary.withOpacity(.3),
                         ),
                       ),
-                      child: const Text(
-                        'Ver detalle',
+                      child: Text(
+                        S.of(context).seeDetail,
                       ),
                     )
                   : Row(
@@ -208,8 +221,8 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                           size: 14,
                         ),
                         const SizedBox(width: 8),
-                        const Text(
-                          'Sin detalle',
+                        Text(
+                          S.of(context).noDetail,
                         ),
                       ],
                     ),

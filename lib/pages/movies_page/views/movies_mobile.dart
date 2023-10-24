@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../../core/router/router.dart';
+import '../../../gen/l10n.dart';
 import '../../../widgets/widgets.dart';
 import '../providers/movies_providers.dart';
 import '../widgets/movies_widgets.dart';
@@ -34,8 +35,8 @@ class MoviesMobile extends ConsumerWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Filtros',
+                            Text(
+                              S.of(context).filters,
                             ),
                             CustomIconButton(
                               icon: PhosphorIcons.regular.x,
@@ -74,9 +75,9 @@ class MoviesMobile extends ConsumerWidget {
               },
             )
           : state.movies!.isEmpty
-              ? const Center(
+              ? Center(
                   child: Text(
-                    'No hay peliculas',
+                    S.of(context).noMoviesFound,
                   ),
                 )
               : MoviesCard(

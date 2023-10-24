@@ -8,4 +8,8 @@ abstract class MovieRepository {
     String? language,
     String? page,
   });
+
+  Future<Either<ApiException, List<GenreModel>>> getMoviesGenres({
+    String? language,
+  });
 }

@@ -21,7 +21,10 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
   final Ref ref;
 
   Future<void> getUpcomingMovies() async {
-    final response = await ref.read(movieRepositoryProvider).getUpcomingMovies();
+    final response = await ref.read(movieRepositoryProvider).getUpcomingMovies(
+          language: ref.watch(localeProvider).languageCode,
+          page: state.currentPageRequested.toString(),
+        );
 
     response.fold(
       (l) {

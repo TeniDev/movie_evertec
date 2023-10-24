@@ -29,4 +29,13 @@ class _MovieRepositoryImpl implements MovieRepository {
       page: page,
     );
   }
+
+  @override
+  Future<Either<ApiException, List<GenreModel>>> getMoviesGenres({
+    String? language,
+  }) async {
+    return _movieResource.getMoviesGenres(
+      language: language,
+    );
+  }
 }

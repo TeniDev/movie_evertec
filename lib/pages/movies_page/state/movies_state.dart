@@ -13,5 +13,6 @@ class MoviesState with _$MoviesState {
     required int currentPageRequested,
   }) = _MoviesState;
 
-  factory MoviesState.fromJson(Map<String, dynamic> json) => _$MoviesStateFromJson(json);
+  factory MoviesState.fromJson(Map<String, dynamic> json) =>
+      _$MoviesStateFromJson(json);
 }

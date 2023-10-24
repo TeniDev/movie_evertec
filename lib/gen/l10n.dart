@@ -59,6 +59,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Filtros`
+  String get filters {
+    return Intl.message(
+      'Filtros',
+      name: 'filters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No se encontraron películas.`
+  String get noMoviesFound {
+    return Intl.message(
+      'No se encontraron películas.',
+      name: 'noMoviesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fecha de lanzamiento: `
+  String get releaseDate {
+    return Intl.message(
+      'Fecha de lanzamiento: ',
+      name: 'releaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ver detalle`
+  String get seeDetail {
+    return Intl.message(
+      'Ver detalle',
+      name: 'seeDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hay detalle`
+  String get noDetail {
+    return Intl.message(
+      'No hay detalle',
+      name: 'noDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configuración`
+  String get settings {
+    return Intl.message(
+      'Configuración',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Idioma`
+  String get language {
+    return Intl.message(
+      'Idioma',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modo oscuro`
+  String get darkMode {
+    return Intl.message(
+      'Modo oscuro',
+      name: 'darkMode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

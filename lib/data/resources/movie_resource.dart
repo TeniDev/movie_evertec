@@ -67,4 +67,41 @@ class _MovieTmdbResource implements MovieResource {
       );
     }
   }
+
+  @override
+  Future<Either<ApiException, List<GenreModel>>> getMoviesGenres({
+    String? language,
+  }) async {
+    final response = await _apiHelper.get(
+      'genre/movie/list',
+      queryParameters: {
+        'language': language ?? 'es',
+      },
+      headers: {
+        'Authorization': 'Bearer ${Env.tmdbAccessKey}',
+        'Accept': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final genresJson = jsonDecode(response.body)['genres'] as List;
+
+      List<GenreModel> genres = [];
+
+      for (final element in genresJson) {
+        genres.add(GenreModel.fromJson(
+          element as Map<String, dynamic>,
+        ));
+      }
+
+      return Right(genres);
+    } else {
+      return Left(
+        ApiException(
+          response.statusCode,
+          jsonDecode(response.body)['status_message'],
+        ),
+      );
+    }
+  }
 }

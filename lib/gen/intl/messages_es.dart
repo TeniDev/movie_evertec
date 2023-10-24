@@ -22,6 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "comingSoon": MessageLookupByLibrary.simpleMessage("Proximamente")
+        "comingSoon": MessageLookupByLibrary.simpleMessage("Proximamente"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("Modo oscuro"),
+        "filters": MessageLookupByLibrary.simpleMessage("Filtros"),
+        "language": MessageLookupByLibrary.simpleMessage("Idioma"),
+        "noDetail": MessageLookupByLibrary.simpleMessage("No hay detalle"),
+        "noMoviesFound": MessageLookupByLibrary.simpleMessage(
+            "No se encontraron películas."),
+        "releaseDate":
+            MessageLookupByLibrary.simpleMessage("Fecha de lanzamiento: "),
+        "seeDetail": MessageLookupByLibrary.simpleMessage("Ver detalle"),
+        "settings": MessageLookupByLibrary.simpleMessage("Configuración")
       };
 }

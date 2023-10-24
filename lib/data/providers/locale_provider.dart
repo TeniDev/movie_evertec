@@ -17,6 +17,8 @@ class _LocaleProvider extends Notifier<Locale> {
   }
 
   changeLocale(Locale locale) async {
-    state = S.delegate.supportedLocales.contains(locale) ? locale : const Locale('es');
+    state = S.delegate.supportedLocales.contains(locale)
+        ? locale
+        : const Locale('es');
   }
 }
