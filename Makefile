@@ -30,3 +30,7 @@ fix_gen:
 	@echo "╠ Fixing gen..."
 	mkdir ./.dart_tool/flutter_gen
 	echo "version: 1.0.0" > ./.dart_tool/flutter_gen/pubspec.yaml
+
+gen_test:
+	@echo "╠ Running tests..."
+	flutter test test/app_test.dart

@@ -10,15 +10,15 @@ import '../helpers/helpers.dart';
 import '../providers/api_provider.dart';
 
 final movieResourceProvider = Provider<MovieResource>((ref) {
-  return _MovieTmdbResource(
+  return MovieTmdbResource(
     apiHelper: ref.watch(apiProvider),
   );
 });
 
 abstract class MovieResource extends MovieRepository {}
 
-class _MovieTmdbResource implements MovieResource {
-  _MovieTmdbResource({
+class MovieTmdbResource implements MovieResource {
+  MovieTmdbResource({
     required ApiHelper apiHelper,
   }) : _apiHelper = apiHelper;
 
