@@ -1,0 +1,13 @@
+{
+    "@@locale": "en",
+    "comingSoon": "Coming soon",
+    "filters": "Filters",
+    "noMoviesFound": "No movies found",
+    "releaseDate": "Release date: ",
+    "seeDetail": "Details",
+    "noDetail": "No details",
+    "settings": "Settings",
+    "language": "Language",
+    "darkMode": "Dark mode",
+    "search": "Search"
+}
