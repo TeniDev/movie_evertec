@@ -20,10 +20,10 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
 
   final Ref ref;
 
-  Future<void> getUpcomingMovies() async {
+  Future<void> getUpcomingMovies({bool newPage = false}) async {
     final response = await ref.read(movieRepositoryProvider).getUpcomingMovies(
           language: ref.watch(localeProvider).languageCode,
-          page: state.currentPageRequested.toString(),
+          page: (state.currentPageRequested + (newPage ? 1 : 0)).toString(),
         );
 
     response.fold(
@@ -38,7 +38,8 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
       },
       (r) {
         state = state.copyWith(
-          movies: r,
+          movies: state.movies != null ? [...state.movies!, ...r] : r,
+          currentPageRequested: newPage ? state.currentPageRequested + 1 : state.currentPageRequested,
         );
       },
     );

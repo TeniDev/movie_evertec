@@ -16,11 +16,13 @@ class MoviesCard extends StatefulWidget {
     required this.movies,
     this.currentMovieIndex = 0.0,
     required this.updateMovieIndex,
+    required this.loadMore,
   });
 
   final List<MovieModel> movies;
   final double currentMovieIndex;
   final Function updateMovieIndex;
+  final Function loadMore;
 
   @override
   State<MoviesCard> createState() => _MoviesCardState();
@@ -75,6 +77,9 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                   controller: _movieCardPageController,
                   clipBehavior: Clip.none,
                   itemCount: widget.movies.length,
+                  onPageChanged: (value) {
+                    if (value == widget.movies.length - 3) widget.loadMore();
+                  },
                   itemBuilder: (context, index) {
                     final movie = widget.movies[index];
                     final progress = (_movieCardPage - index);
