@@ -71,7 +71,7 @@ class SettingMobile extends ConsumerWidget {
               trailing: Switch(
                 value: isDarkMode,
                 onChanged: (_) {
-                  ref.read(isDarkModeProvider.notifier).update((state) => !state);
+                  ref.read(isDarkModeProvider.notifier).changeTheme(!isDarkMode);
                 },
               ),
             ),
