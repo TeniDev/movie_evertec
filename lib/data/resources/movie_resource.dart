@@ -104,4 +104,48 @@ class _MovieTmdbResource implements MovieResource {
       );
     }
   }
+
+  @override
+  Future<Either<ApiException, List<MovieModel>>> searchMovie({
+    String? language,
+    String? page,
+    String? query,
+  }) async {
+    final response = await _apiHelper.get(
+      'search/movie',
+      queryParameters: {
+        'language': language ?? 'es',
+        'page': page ?? '1',
+        'include_adult': 'false',
+        'include_video': 'false',
+        'sort_by': 'popularity.desc',
+        'query': query ?? '',
+      },
+      headers: {
+        'Authorization': 'Bearer ${Env.tmdbAccessKey}',
+        'Accept': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final moviesJson = jsonDecode(response.body)['results'] as List;
+
+      List<MovieModel> movies = [];
+
+      for (final element in moviesJson) {
+        movies.add(MovieModel.fromJson(
+          element as Map<String, dynamic>,
+        ));
+      }
+
+      return Right(movies);
+    } else {
+      return Left(
+        ApiException(
+          response.statusCode,
+          jsonDecode(response.body)['status_message'],
+        ),
+      );
+    }
+  }
 }

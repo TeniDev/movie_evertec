@@ -38,4 +38,17 @@ class _MovieRepositoryImpl implements MovieRepository {
       language: language,
     );
   }
+
+  @override
+  Future<Either<ApiException, List<MovieModel>>> searchMovie({
+    String? language,
+    String? page,
+    String? query,
+  }) async {
+    return _movieResource.searchMovie(
+      language: language,
+      page: page,
+      query: query,
+    );
+  }
 }

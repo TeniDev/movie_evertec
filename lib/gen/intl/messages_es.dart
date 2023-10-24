@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "No se encontraron películas."),
         "releaseDate":
             MessageLookupByLibrary.simpleMessage("Fecha de lanzamiento: "),
+        "search": MessageLookupByLibrary.simpleMessage("Buscar"),
         "seeDetail": MessageLookupByLibrary.simpleMessage("Ver detalle"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración")
       };

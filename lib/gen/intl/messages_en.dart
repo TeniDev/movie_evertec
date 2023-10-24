@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noMoviesFound":
             MessageLookupByLibrary.simpleMessage("No movies found"),
         "releaseDate": MessageLookupByLibrary.simpleMessage("Release date: "),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seeDetail": MessageLookupByLibrary.simpleMessage("Details"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings")
       };

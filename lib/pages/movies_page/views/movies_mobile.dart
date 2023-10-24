@@ -5,6 +5,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../core/router/router.dart';
 import '../../../gen/l10n.dart';
 import '../../../widgets/widgets.dart';
+import '../../search_page/providers/search_providers.dart';
 import '../providers/movies_providers.dart';
 import '../widgets/movies_widgets.dart';
 
@@ -54,13 +55,19 @@ class MoviesMobile extends ConsumerWidget {
           ),
         ), */
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 16,
-            ),
-            child: CustomIconButton(
-              icon: PhosphorIcons.regular.magnifyingGlass,
-              onPressed: () => ref.read(appRouterProvider).push(RoutesNames.search),
+          Hero(
+            tag: 'search',
+            child: Padding(
+              padding: const EdgeInsets.only(
+                right: 16,
+              ),
+              child: CustomIconButton(
+                icon: PhosphorIcons.regular.magnifyingGlass,
+                onPressed: () {
+                  ref.read(searchEventProvider.notifier).resetState();
+                  ref.read(appRouterProvider).push(RoutesNames.search);
+                },
+              ),
             ),
           ),
         ],

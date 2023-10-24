@@ -8,5 +8,6 @@
     "noDetail": "No hay detalle",
     "settings": "Configuración",
     "language": "Idioma",
-    "darkMode": "Modo oscuro"
+    "darkMode": "Modo oscuro",
+    "search": "Buscar"
 }
