@@ -18,7 +18,8 @@ class MoviesMobile extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.transparent,
-        leading: Padding(
+        // TODO add filters
+        /* leading: Padding(
           padding: const EdgeInsets.only(
             left: 16,
           ),
@@ -51,7 +52,7 @@ class MoviesMobile extends ConsumerWidget {
               );
             },
           ),
-        ),
+        ), */
         actions: [
           Padding(
             padding: const EdgeInsets.only(
