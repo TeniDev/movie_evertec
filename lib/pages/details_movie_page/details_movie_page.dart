@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DetailsMoviePage extends StatelessWidget {
+import '../../core/utils/utils.dart';
+import 'views/details_movie_views.dart';
+
+class DetailsMoviePage extends BasePage {
   const DetailsMoviePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Details Movie Page',
-        ),
-      ),
-    );
+  Widget? mobileBody(BuildContext context) {
+    return const DetailsMovieMobile();
   }
 }

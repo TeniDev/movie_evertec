@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/constants/constants.dart';
 import 'core/router/router.dart';
 import 'core/theme/app_theme.dart';
+import 'core/utils/utils.dart';
 import 'data/providers/providers.dart';
 import 'gen/l10n.dart';
 
@@ -41,7 +42,7 @@ class MovieEvertecApp extends ConsumerWidget {
     final response = ref.read(movieRepositoryProvider).getMoviesGenres(language: locale.languageCode);
 
     response.fold(
-      (l) => null,
+      (l) => CustomLogger().error('Error: ${l.httpCode} - ${l.message}'),
       (r) => ref.read(genreProvider.notifier).update((_) => r),
     );
   }

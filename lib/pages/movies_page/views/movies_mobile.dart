@@ -85,6 +85,7 @@ class MoviesMobile extends ConsumerWidget {
                   currentMovieIndex: state.currentMovieIndex,
                   updateMovieIndex: (index) => ref.read(moviesEventProvider.notifier).updateMovieIndex(index),
                   loadMore: () => ref.read(moviesEventProvider.notifier).getUpcomingMovies(newPage: true),
+                  goToDetail: () => ref.read(moviesEventProvider.notifier).selectDetailMovie(),
                 ),
     );
   }

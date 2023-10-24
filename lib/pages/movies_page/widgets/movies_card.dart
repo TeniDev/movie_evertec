@@ -17,12 +17,14 @@ class MoviesCard extends StatefulWidget {
     this.currentMovieIndex = 0.0,
     required this.updateMovieIndex,
     required this.loadMore,
+    required this.goToDetail,
   });
 
   final List<MovieModel> movies;
   final double currentMovieIndex;
   final Function updateMovieIndex;
   final Function loadMore;
+  final Function goToDetail;
 
   @override
   State<MoviesCard> createState() => _MoviesCardState();
@@ -202,7 +204,9 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
               ),
               widget.movies[_movieCardIndex].overview != null && widget.movies[_movieCardIndex].overview!.isNotEmpty
                   ? TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        widget.goToDetail();
+                      },
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(
                           const EdgeInsets.symmetric(

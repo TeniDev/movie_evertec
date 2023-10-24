@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_evertec/core/router/router.dart';
 import 'package:movie_evertec/core/utils/logger.dart';
 
 import '../../../data/providers/providers.dart';
+import '../../details_movie_page/providers/details_movie_providers.dart';
 import '../state/movies_state.dart';
 
 final moviesEventProvider = StateNotifierProvider<MoviesEventNotifier, MoviesState>(
@@ -49,5 +51,15 @@ class MoviesEventNotifier extends StateNotifier<MoviesState> {
     state = state.copyWith(
       currentMovieIndex: index,
     );
+  }
+
+  void selectDetailMovie() {
+    ref.read(detailsMovieEventProvider.notifier).setSelectedMovie(
+          state.movies![state.currentMovieIndex.round()],
+        );
+
+    ref.read(appRouterProvider).push(
+          RoutesNames.movieDetails,
+        );
   }
 }
