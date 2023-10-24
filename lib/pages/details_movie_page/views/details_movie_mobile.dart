@@ -108,9 +108,10 @@ class DetailsMovieMobile extends ConsumerWidget {
                       RichText(
                         text: TextSpan(
                           text: S.of(context).releaseDate,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                           children: [
                             TextSpan(
