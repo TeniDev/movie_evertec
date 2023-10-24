@@ -73,6 +73,20 @@ class SearchMobile extends ConsumerWidget {
                                   index,
                                 );
                           },
+                          leading: Container(
+                            height: 40,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(2),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  '${Env.imageUrl}${state.movies![index].posterPath}',
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                           title: Text(
                             state.movies![index].title ?? '',
                           ),
