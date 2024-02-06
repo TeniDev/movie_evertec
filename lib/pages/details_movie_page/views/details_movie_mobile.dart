@@ -146,7 +146,7 @@ class DetailsMovieMobile extends ConsumerWidget {
                 onPressed: () => ref.read(appRouterProvider).pop(),
                 padding: const EdgeInsets.all(20),
                 icon: Icon(
-                  PhosphorIcons.regular.caretLeft,
+                  PhosphorIcons.caretLeft(),
                   size: 32,
                   color: Colors.white,
                 ),
