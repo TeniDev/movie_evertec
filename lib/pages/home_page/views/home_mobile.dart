@@ -20,9 +20,7 @@ class HomeMobile extends ConsumerWidget {
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
-          ref
-              .read(homeEventProvider.notifier)
-              .changeCurrentIndexBottomBar(value);
+          ref.read(homeEventProvider.notifier).changeCurrentIndexBottomBar(value);
         },
         elevation: 0.0,
         iconSize: 32,
@@ -32,13 +30,13 @@ class HomeMobile extends ConsumerWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              PhosphorIcons.regular.filmSlate,
+              PhosphorIcons.filmSlate(),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              PhosphorIcons.regular.gearSix,
+              PhosphorIcons.gearSix(),
             ),
             label: '',
           ),

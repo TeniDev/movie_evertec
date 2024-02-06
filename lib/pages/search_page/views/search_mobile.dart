@@ -23,7 +23,7 @@ class SearchMobile extends ConsumerWidget {
             left: 16,
           ),
           child: CustomIconButton(
-            icon: PhosphorIcons.regular.caretLeft,
+            icon: PhosphorIcons.caretLeft(),
             onPressed: () {
               ref.read(appRouterProvider).pop();
             },
@@ -50,7 +50,7 @@ class SearchMobile extends ConsumerWidget {
               child: Hero(
                 tag: 'search',
                 child: Icon(
-                  PhosphorIcons.regular.magnifyingGlass,
+                  PhosphorIcons.magnifyingGlass(),
                   size: 100,
                   color: Theme.of(context).colorScheme.secondary.withOpacity(.2),
                 ),
@@ -91,7 +91,7 @@ class SearchMobile extends ConsumerWidget {
                             state.movies![index].title ?? '',
                           ),
                           trailing: Icon(
-                            PhosphorIcons.regular.caretRight,
+                            PhosphorIcons.caretRight(),
                           ),
                         ),
                         const Divider(

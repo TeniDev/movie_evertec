@@ -19,41 +19,6 @@ class MoviesMobile extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.transparent,
-        // TODO add filters
-        /* leading: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-          ),
-          child: CustomIconButton(
-            icon: PhosphorIcons.regular.funnelSimple,
-            onPressed: () {
-              showModalBottomSheet(
-                context: rootNavigatorKey.currentContext!,
-                builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              S.of(context).filters,
-                            ),
-                            CustomIconButton(
-                              icon: PhosphorIcons.regular.x,
-                              onPressed: () => ref.read(appRouterProvider).pop(context),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        ), */
         actions: [
           Hero(
             tag: 'search',
@@ -62,7 +27,7 @@ class MoviesMobile extends ConsumerWidget {
                 right: 16,
               ),
               child: CustomIconButton(
-                icon: PhosphorIcons.regular.magnifyingGlass,
+                icon: PhosphorIcons.magnifyingGlass(),
                 onPressed: () {
                   ref.read(searchEventProvider.notifier).resetState();
                   ref.read(appRouterProvider).push(RoutesNames.search);

@@ -229,7 +229,7 @@ class _MoviesCardState extends State<MoviesCard> with SingleTickerProviderStateM
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          PhosphorIcons.regular.placeholder,
+                          PhosphorIcons.placeholder(),
                           size: 14,
                         ),
                         const SizedBox(width: 8),

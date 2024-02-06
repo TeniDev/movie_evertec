@@ -55,7 +55,7 @@ class SettingMobile extends ConsumerWidget {
                     value: locale,
                     onChanged: (value) => ref.read(localeProvider.notifier).changeLocale(value!),
                     icon: Icon(
-                      PhosphorIcons.regular.caretDown,
+                      PhosphorIcons.caretDown(),
                     ),
                   ),
                 ),
